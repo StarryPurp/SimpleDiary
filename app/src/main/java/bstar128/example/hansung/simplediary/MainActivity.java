@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         date.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int month, int day) {
-                fileName=year+"/"+(month+1)+"/"+day+".txt";
+                fileName=year+"_"+(month+1)+"_"+day+".txt";
                 String data=readDiary(fileName);
                 edit.setText(data);
                 but.setEnabled(true);
@@ -70,19 +70,15 @@ public class MainActivity extends AppCompatActivity {
             fIn.read(buf);
             diaryStr=new String(buf).trim();
             but.setText("수정");
+            fIn.close();
         }catch (FileNotFoundException e){
-            edit.setText("일기가 존재하지 않습니다.");
+            edit.setHint("일기가 존재하지 않습니다.");
             but.setText("새로 저장");
         }catch (IOException e){
 
         }
-        try{
-            fIn.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
 
-        return null;
+        return diaryStr;
     }
 
 }
