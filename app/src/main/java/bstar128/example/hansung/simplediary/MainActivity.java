@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         }catch (IOException e){
 
         }
+        try{
+            fIn.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
         return null;
     }
 
